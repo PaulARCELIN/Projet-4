@@ -527,3 +527,24 @@ footer {
   }
 }
 
+#label-checkbox1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0;
+  margin-top: 10px;
+  width: max-content;
+}
+
+#messageErreurCg {
+  border: darkseagreen 1px solid;
+  background-color: darkseagreen;
+  border-radius: 10px;
+  position: absolute;
+  padding: 5px;
+  bottom: -10px;
+  left: 270px;
+  width: 140px;
+  text-align: left;
+  transition: all 0.5s ease-in-out ;
+}
+
