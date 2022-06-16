@@ -46,9 +46,6 @@ labelCheckbox1.appendChild(messageErreurCg);
 // Disparition du message d'erreur (pers.)
 messageErreurCg.style.display = "none";
 
-
-
-
 //On désactive le message d'erreur firstname
 let msgErrorFirst = document.getElementById("msgErrorFirst");
 msgErrorFirst.style.display = "none";
@@ -93,7 +90,7 @@ function verifEmail() {
 }
 
 // On désactive le message d'erreur de la Birthdate
-const DATE_REGEX = new RegExp (/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[1-9]|2[1-9])$/);
+const DATE_REGEX = new RegExp (/(\d\d)/);
 let msgErrorBirthdate = document.getElementById("msgErrorBirthdate");
 msgErrorBirthdate.style.display = "none";
 // On vérifie si la date de naissace a bien été saisie
@@ -113,7 +110,7 @@ msgErrorQuantity.style.display = "none";
 //On vérifie la validité de quantity (pers.)
 function verifQuantity () {
   let quantityValue = document.getElementById("quantity").value;
-  if (quantityValue !== null) {
+  if (quantityValue.length !== 0) {
     return true;
   }
   else {
@@ -121,6 +118,22 @@ function verifQuantity () {
   }
 };
 
+let radios = document.getElementById('formRadio');
+let radiosList = radios.querySelectorAll('input');
+// On désactive le message d'erreur location
+let msgErrorLocation = document.getElementById('msgErrorLocation');
+msgErrorLocation.style.display = "none";
+// On passe les valeurs des inputs radios sous form d'array 
+function verifLocation() {
+  let radiosInput = Array.from(radiosList).map(radio => radio.checked);
+  let vrai = (e) => e === true; 
+  if(radiosInput.some(vrai)){
+    return true;
+  } else {
+    return false;
+  }
+};
+  
 //On vérifie si les CG sont cochées (pers.)
 function verifCg() {
   let x = checkbox1.checked;
@@ -134,48 +147,20 @@ function verifCg() {
   return result;
 };
 
-/* function checkErrors () {
-  let errors = [];
-  let firstName = document.getElementById("first");
-  let lastName = document.getElementById("last");
-  let email = document.getElementById("email");
-  let birthdate = document.getElementById("birthdate");
-  let quantity = document.getElementById("quantity");
-  let radios = document.querySelectorAll("input[type=radio]");
-  console.log(radios);
-
-  // Vérification du prénom 
-  if (firstName.value === null || firstName.value.length < 2) {
-    let error = {
-      message: "Champ obligatoire"
-    };
-  }
-}; */
-
-/* function submitForm () {
-  checkErrors();
-  if (verifFirst()) {
-    msgErrorFirst.style.display = "none";
+// Verification finale, qui check si toutes les autres verifs sont "true"
+function verifFinal() {
+  let allVerif = [verifFirst(), verifLast(), verifEmail(), verifBirthdate(), verifQuantity(), verifCg()];
+  if (allVerif.includes(false)) {
+    return false;
   }
   else {
-    msgErrorFirst.style.display = "block";
+    return true;
   }
-  if (verifLast()) {
-    msgErrorLast.style.display = "none";
-  }
-  else {
-    msgErrorLast.style.display = "block";
-  }
-  if (verifCg()) {
-    messageErreurCg.style.display = "none";
-  }
-  else {
-    messageErreurCg.style.display = "block";
-  }
-} */
+};
 
-// Vérification des CG (et affichage du message d'erreur si besoin) au click sur submit (pers.)
-btnSubmit.addEventListener("click", () => {
+
+function submitForm (event) {
+  event.preventDefault();
   if (verifFirst()) {
     msgErrorFirst.style.display = "none";
   }
@@ -200,19 +185,36 @@ btnSubmit.addEventListener("click", () => {
   else {
     msgErrorBirthdate.style.display = "block";
   }
-  console.log(verifBirthdate());
   if (verifQuantity()) {
     msgErrorQuantity.style.display = "none";
   }
   else {
     msgErrorQuantity.style.display = "block";
   }
-  console.log(verifQuantity());
+  if (verifLocation()) {
+    msgErrorLocation.style.display = "none";
+  }
+  else {
+    msgErrorLocation.style.display = "block";
+  }
   if (verifCg()) {
     messageErreurCg.style.display = "none";
   }
   else {
     messageErreurCg.style.display = "block";
   }
-  });
+  if (verifFinal()) {
+    closeModal();
+    document.getElementById('form').reset();
+    alert('merci');
+  }
+  else {
+    console.log('faux')
+  }
+}
+
+// Vérification des CG (et affichage du message d'erreur si besoin) au click sur submit (pers.)
+btnSubmit.addEventListener("click", submitForm);
+
+  
 

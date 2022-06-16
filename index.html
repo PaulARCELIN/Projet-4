@@ -65,8 +65,9 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="form"
               name="reserve"
-              onsubmit="submitForm();"
+              novalidate 
             >
               <div
                 class="formData">
@@ -126,9 +127,11 @@
 
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
+                id="formRadio"
                 class="formData">
                 <input
                   class="checkbox-input"
+                  class="radio-input" 
                   type="radio"
                   id="location1"
                   name="location"
@@ -140,6 +143,7 @@
                 >
                 <input
                   class="checkbox-input"
+                  class="radio-input"
                   type="radio"
                   id="location2"
                   name="location"
@@ -151,6 +155,7 @@
                 >
                 <input
                   class="checkbox-input"
+                  class="radio-input"
                   type="radio"
                   id="location3"
                   name="location"
@@ -162,6 +167,7 @@
                 >
                 <input
                   class="checkbox-input"
+                  class="radio-input"
                   type="radio"
                   id="location4"
                   name="location"
@@ -173,6 +179,7 @@
                 >
                 <input
                   class="checkbox-input"
+                  class="radio-input"
                   type="radio"
                   id="location5"
                   name="location"
@@ -184,6 +191,7 @@
                 >
                 <input
                   class="checkbox-input"
+                  class="radio-input"
                   type="radio"
                   id="location6"
                   name="location"
@@ -193,7 +201,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
-              </div>
+              </div><p id="msgErrorLocation" class="msgError">Veuillez choisir une ville.</p>
 
               <div
                 class="formData">
