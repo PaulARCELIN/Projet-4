@@ -12,8 +12,12 @@ function editNav() {
 const MODALBG = document.querySelector(".bground");
 const MODALBTN = document.querySelectorAll(".modal-btn");
 const FORMDATA = document.querySelectorAll(".formData");
+const FORMBODY = document.querySelectorAll(".modal-body");
 // Ajout de la varibale bouton close (pers.)
 const CLOSEBTN = document.querySelectorAll(".close");
+const FORMCONTENT = document.getElementById("content");
+
+
 
 // launch modal event
 MODALBTN.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -158,7 +162,26 @@ function verifFinal() {
   }
 };
 
+// On désactive le message de validation 
+var validationMess = document.getElementById('validation-mess');
+validationMess.style.display = "none"; 
+// Fonction pour fermer le message de validation 
+var closeValidationMess = document.querySelectorAll('#validation-mess_close');
+// Ajout de l'évenement sur le close du message de validation
+closeValidationMess.forEach((btn) => btn.addEventListener("click", closeValidation));
+// Fonction qui ferme le message d'erreur et recharge la page
+function closeValidation() {
+  MODALBG.style.display = "none";
+  location.reload();
+}
 
+// Fonction qui ferme le formulaire et affichage le message de validation
+function closeForm () {
+  FORMCONTENT.style.display = "none";
+  validationMess.style.display = "block";
+}
+
+// Fonction qui vérifie chaque étape du formulaire
 function submitForm (event) {
   event.preventDefault();
   if (verifFirst()) {
@@ -204,9 +227,8 @@ function submitForm (event) {
     messageErreurCg.style.display = "block";
   }
   if (verifFinal()) {
-    closeModal();
-    document.getElementById('form').reset();
-    alert('merci');
+    closeForm();
+    document.getElementById("form").reset();
   }
   else {
     console.log('faux')

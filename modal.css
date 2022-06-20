@@ -553,3 +553,29 @@ footer {
   font-style: italic;
   font-weight: lighter;
 }
+
+#validation-mess {
+  position: absolute;
+  display: flex;
+  border: #ff001b 1px solid;
+  border-radius: 10px;
+  color: white;
+  background-color: #ff001b;
+  width: 250px;
+  height: fit-content;
+  text-align: center;
+  justify-content: center;
+  left: calc(50% - 125px);
+  top: 30%;
+  font-size: 100%;
+  padding: 20px;
+}
+
+#validation-mess i {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+
