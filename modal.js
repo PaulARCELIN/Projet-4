@@ -17,15 +17,13 @@ const FORMBODY = document.querySelectorAll(".modal-body");
 const CLOSEBTN = document.querySelectorAll(".close");
 const FORMCONTENT = document.getElementById("content");
 
-
-
 // launch modal event
 MODALBTN.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   MODALBG.style.display = "block";
+  document.getElementById("form").reset();
 }
-
 
 // close modal event (pers.)
 CLOSEBTN.forEach((btn) => btn.addEventListener("click", closeModal));
@@ -122,6 +120,7 @@ function verifQuantity () {
   }
 };
 
+
 let radios = document.getElementById('formRadio');
 let radiosList = radios.querySelectorAll('input');
 // On désactive le message d'erreur location
@@ -167,9 +166,11 @@ var validationMess = document.getElementById('validation-mess');
 validationMess.style.display = "none"; 
 // Fonction pour fermer le message de validation 
 var closeValidationMess = document.querySelectorAll('#validation-mess_close');
+var closeValidationBtn = document.querySelectorAll('#bouton_fermer');
 // Ajout de l'évenement sur le close du message de validation
+closeValidationBtn.forEach((btn) => btn.addEventListener("click", closeValidation));
 closeValidationMess.forEach((btn) => btn.addEventListener("click", closeValidation));
-// Fonction qui ferme le message d'erreur et recharge la page
+// Fonction qui ferme le message de validation et recharge la page
 function closeValidation() {
   MODALBG.style.display = "none";
   location.reload();

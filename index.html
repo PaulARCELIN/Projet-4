@@ -19,17 +19,18 @@
 
       <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+        <i class="fa fa-bars"></i>
+      </a>
       </div>
-
+      
       <div class="main-navbar">
       <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
-      </a>
+      
       </div>
     </div>
   
@@ -62,10 +63,16 @@
       </div>
 
       <div class="bground">
-        <div id="validation-mess"><p>Votre inscription a bien été enregistrée. Nous vous remercions !</p><i id="validation-mess_close"class="fa-solid fa-xmark"></i></div>
+        <div id="validation-mess"><p>Merci pour votre inscription</p><i id="validation-mess_close"class="fa-solid fa-xmark"></i><input
+          type="button"
+          class="btn-close"
+          class="button"
+          value="Fermer"
+          id="bouton_fermer"
+        /></div>
         <div id="content" class="content">
           <span class="close"></span>
-          <div class="modal-body">
+          <div id="body" class="modal-body">
             <form
               id="form"
               name="reserve"
