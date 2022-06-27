@@ -161,26 +161,35 @@ function verifFinal() {
   }
 };
 
+
+
 // On désactive le message de validation 
 var validationMess = document.getElementById('validation-mess');
 validationMess.style.display = "none"; 
+
 // Fonction pour fermer le message de validation 
 var closeValidationMess = document.querySelectorAll('#validation-mess_close');
 var closeValidationBtn = document.querySelectorAll('#bouton_fermer');
+
 // Ajout de l'évenement sur le close du message de validation
 closeValidationBtn.forEach((btn) => btn.addEventListener("click", closeValidation));
 closeValidationMess.forEach((btn) => btn.addEventListener("click", closeValidation));
+
 // Fonction qui ferme le message de validation et recharge la page
 function closeValidation() {
   MODALBG.style.display = "none";
   location.reload();
 }
 
+
+
 // Fonction qui ferme le formulaire et affichage le message de validation
 function closeForm () {
   FORMCONTENT.style.display = "none";
   validationMess.style.display = "block";
 }
+
+
 
 // Fonction qui vérifie chaque étape du formulaire
 function submitForm (event) {

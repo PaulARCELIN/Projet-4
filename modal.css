@@ -583,7 +583,6 @@ footer {
   justify-content: space-between;
   font-size: 100%;
   padding: 20%;
-  left: calc (50%-250px);
 }
 
 #validation-mess i {
