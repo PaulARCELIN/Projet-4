@@ -7,7 +7,6 @@ function editNav() {
   }
 }
 
-
 // DOM Elements
 const MODALBG = document.querySelector(".bground");
 const MODALBTN = document.querySelectorAll(".modal-btn");
@@ -24,6 +23,8 @@ function launchModal() {
   MODALBG.style.display = "block";
   document.getElementById("form").reset();
 }
+
+/* btn.addEventListener("click", () => { MODALBG.style.display = "none"; }); */
 
 // close modal event (pers.)
 CLOSEBTN.forEach((btn) => btn.addEventListener("click", closeModal));
@@ -48,13 +49,20 @@ labelCheckbox1.appendChild(messageErreurCg);
 // Disparition du message d'erreur (pers.)
 messageErreurCg.style.display = "none";
 
+
+/* function regexNameAndLastName(value) {
+  const regex = /^[a-zA-Z_.+-]*(?:[a-zA-Z][a-zA-Z_.+-]*){2,}$/g;
+  return regex.test(value);
+} */
+
 //On désactive le message d'erreur firstname
 let msgErrorFirst = document.getElementById("msgErrorFirst");
 msgErrorFirst.style.display = "none";
 //On vérifie la validité du firstname (pers.)
 function verifFirst () {
+  const regex = /^[a-zA-Z_.+-]*(?:[a-zA-Z][a-zA-Z_.+-]*){2,}$/g;
   let firstValue = document.getElementById("first").value;
-  if (firstValue !== null && firstValue.length >= 2) {
+  if (regex.test(firstValue)) {
     return true;
   }
   else {
@@ -67,8 +75,9 @@ let msgErrorLast = document.getElementById("msgErrorLast");
 msgErrorLast.style.display = "none";
 //On vérifie la validité du lastname (pers.)
 function verifLast () {
+  const regex = /^[a-zA-Z_.+-]*(?:[a-zA-Z][a-zA-Z_.+-]*){2,}$/g;
   let lastValue = document.getElementById("last").value;
-  if (lastValue !== null && lastValue.length >= 2) {
+  if (regex.test(lastValue)) {
     return true;
   }
   else {
@@ -112,7 +121,7 @@ msgErrorQuantity.style.display = "none";
 //On vérifie la validité de quantity (pers.)
 function verifQuantity () {
   let quantityValue = document.getElementById("quantity").value;
-  if (quantityValue.length !== 0) {
+  if (quantityValue.length !== 0 && quantityValue >= 0) {
     return true;
   }
   else {
@@ -161,8 +170,6 @@ function verifFinal() {
   }
 };
 
-
-
 // On désactive le message de validation 
 var validationMess = document.getElementById('validation-mess');
 validationMess.style.display = "none"; 
@@ -170,7 +177,6 @@ validationMess.style.display = "none";
 // Fonction pour fermer le message de validation 
 var closeValidationMess = document.querySelectorAll('#validation-mess_close');
 var closeValidationBtn = document.querySelectorAll('#bouton_fermer');
-
 // Ajout de l'évenement sur le close du message de validation
 closeValidationBtn.forEach((btn) => btn.addEventListener("click", closeValidation));
 closeValidationMess.forEach((btn) => btn.addEventListener("click", closeValidation));
@@ -181,15 +187,11 @@ function closeValidation() {
   location.reload();
 }
 
-
-
 // Fonction qui ferme le formulaire et affichage le message de validation
 function closeForm () {
   FORMCONTENT.style.display = "none";
   validationMess.style.display = "block";
 }
-
-
 
 // Fonction qui vérifie chaque étape du formulaire
 function submitForm (event) {
